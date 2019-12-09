@@ -1,36 +1,44 @@
 package entitites;
 
-public class Bus {
-    private int BusID, year;
-    private String model;
-    public Bus(int BusID, int year, String model)
-    {
-        this.BusID=BusID;
-        this.year = year;
-        this.model = model;
-    }
+public class Bus
+{
+	private int BusID, year;
+	private String model;
 
-    public int getBusID() {
-        return BusID;
-    }
+	public Bus(int BusID, int year, String model)
+	{
+		this.BusID = BusID;
+		this.year = year;
+		this.model = model;
+	}
 
-    public void setBusID(int busID) {
-        BusID = busID;
-    }
+	public int getBusID()
+	{
+		return BusID;
+	}
 
-    public int getYear() {
-        return year;
-    }
+	public void setBusID(int busID)
+	{
+		BusID = busID;
+	}
 
-    public void setYear(int year) {
-        this.year = year;
-    }
+	public int getYear()
+	{
+		return year;
+	}
 
-    public String getModel() {
-        return model;
-    }
+	public void setYear(int year)
+	{
+		this.year = year;
+	}
 
-    public void setModel(String model) {
-        this.model = model;
-    }
+	public String getModel()
+	{
+		return model;
+	}
+
+	public void setModel(String model)
+	{
+		this.model = model;
+	}
 }

@@ -1,63 +1,77 @@
 package entitites;
 
-public class TripOffering {
-    private int tripNumber, BusID;
-    private String Date, ScheduledStartTime, ScheduledArrivalTime, driverName;
-    public TripOffering( int tripNumber, int BusID, String Date, String ScheduledStartTime, String ScheduledArrivalTime, String DriverName)
-    {
-        this.tripNumber = tripNumber;
-        this.BusID = BusID;
-        this.Date = Date;
-        this.ScheduledStartTime = ScheduledStartTime;
-        this.ScheduledArrivalTime = ScheduledArrivalTime;
-        this.driverName = DriverName;
-    }
+public class TripOffering
+{
+	private int tripNumber, BusID;
+	private String Date, ScheduledStartTime, ScheduledArrivalTime, driverName;
 
-    public int getTripNumber() {
-        return tripNumber;
-    }
+	public TripOffering(int tripNumber, int BusID, String Date, String ScheduledStartTime, String ScheduledArrivalTime, String DriverName)
+	{
+		this.tripNumber = tripNumber;
+		this.BusID = BusID;
+		this.Date = Date;
+		this.ScheduledStartTime = ScheduledStartTime;
+		this.ScheduledArrivalTime = ScheduledArrivalTime;
+		this.driverName = DriverName;
+	}
 
-    public void setTripNumber(int tripNumber) {
-        this.tripNumber = tripNumber;
-    }
+	public int getTripNumber()
+	{
+		return tripNumber;
+	}
 
-    public int getBusID() {
-        return BusID;
-    }
+	public void setTripNumber(int tripNumber)
+	{
+		this.tripNumber = tripNumber;
+	}
 
-    public void setBusID(int busID) {
-        BusID = busID;
-    }
+	public int getBusID()
+	{
+		return BusID;
+	}
 
-    public String getDate() {
-        return Date;
-    }
+	public void setBusID(int busID)
+	{
+		BusID = busID;
+	}
 
-    public void setDate(String date) {
-        Date = date;
-    }
+	public String getDate()
+	{
+		return Date;
+	}
 
-    public String getScheduledStartTime() {
-        return ScheduledStartTime;
-    }
+	public void setDate(String date)
+	{
+		Date = date;
+	}
 
-    public void setScheduledStartTime(String scheduledStartTime) {
-        ScheduledStartTime = scheduledStartTime;
-    }
+	public String getScheduledStartTime()
+	{
+		return ScheduledStartTime;
+	}
 
-    public String getScheduledArrivalTime() {
-        return ScheduledArrivalTime;
-    }
+	public void setScheduledStartTime(String scheduledStartTime)
+	{
+		ScheduledStartTime = scheduledStartTime;
+	}
 
-    public void setScheduledArrivalTime(String scheduledArrivalTime) {
-        ScheduledArrivalTime = scheduledArrivalTime;
-    }
+	public String getScheduledArrivalTime()
+	{
+		return ScheduledArrivalTime;
+	}
 
-    public String getDriverName() {
-        return driverName;
-    }
+	public void setScheduledArrivalTime(String scheduledArrivalTime)
+	{
+		ScheduledArrivalTime = scheduledArrivalTime;
+	}
 
-    public void setDriverName(String driverName) {
-        this.driverName = driverName;
-    }
+	public String getDriverName()
+	{
+		return driverName;
+	}
+
+	public void setDriverName(String driverName)
+	{
+		this.driverName = driverName;
+	}
 }

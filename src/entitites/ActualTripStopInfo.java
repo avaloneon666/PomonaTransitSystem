@@ -1,83 +1,110 @@
 package entitites;
 
-public class ActualTripStopInfo {
-    private int tripNumber,stopNumber,numberOfPassengerIn, numberOfPassengerOut;
-    private String Date, ScheduledStartTime, ScheduledArrivalTime, ActualStartTime,ActualArrivalTime;
-    public ActualTripStopInfo(int tripNumber, int stopNumber, int numberOfPassengerIn, int numberOfPassengerOut, String Date,String ScheduledStartTime, String ScheduledArrivalTime,String ActualStartTime,String ActualArrivalTime ){
-        this.tripNumber=tripNumber;
-        this.stopNumber = stopNumber;
-        this.numberOfPassengerIn = numberOfPassengerIn;
-        this.numberOfPassengerOut = numberOfPassengerOut;
-        this.Date = Date;
-        this.ScheduledStartTime = ScheduledStartTime;
-        this.ScheduledArrivalTime=ScheduledArrivalTime;
-        this.ActualStartTime=ActualStartTime;
-        this.ActualArrivalTime=ActualArrivalTime;
-    }
-    public int getTripNumber() {
-        return tripNumber;
-    }
-    public void setTripNumber(int tripNumber) {
-        this.tripNumber = tripNumber;
-    }
-    public int getStopNumber() {
-        return stopNumber;
-    }
-    public void setStopNumber(int stopNumber) {
-        this.stopNumber = stopNumber;
-    }
-    public int getNumberOfPassengerIn() {
-        return numberOfPassengerIn;
-    }
-    public void setNumberOfPassengerIn(int numberOfPassengerIn) {
-        this.numberOfPassengerIn = numberOfPassengerIn;
-    }
+public class ActualTripStopInfo
+{
+	private int tripNumber, stopNumber, numberOfPassengerIn, numberOfPassengerOut;
+	private String Date, ScheduledStartTime, ScheduledArrivalTime, ActualStartTime, ActualArrivalTime;
 
-    public int getNumberOfPassengerOut() {
-        return numberOfPassengerOut;
-    }
+	public ActualTripStopInfo(int tripNumber, int stopNumber, int numberOfPassengerIn, int numberOfPassengerOut, String Date, String ScheduledStartTime, String ScheduledArrivalTime, String ActualStartTime, String ActualArrivalTime)
+	{
+		this.tripNumber = tripNumber;
+		this.stopNumber = stopNumber;
+		this.numberOfPassengerIn = numberOfPassengerIn;
+		this.numberOfPassengerOut = numberOfPassengerOut;
+		this.Date = Date;
+		this.ScheduledStartTime = ScheduledStartTime;
+		this.ScheduledArrivalTime = ScheduledArrivalTime;
+		this.ActualStartTime = ActualStartTime;
+		this.ActualArrivalTime = ActualArrivalTime;
+	}
 
-    public void setNumberOfPassengerOut(int numberOfPassengerOut) {
-        this.numberOfPassengerOut = numberOfPassengerOut;
-    }
+	public int getTripNumber()
+	{
+		return tripNumber;
+	}
 
-    public String getDate() {
-        return Date;
-    }
+	public void setTripNumber(int tripNumber)
+	{
+		this.tripNumber = tripNumber;
+	}
 
-    public void setDate(String date) {
-        Date = date;
-    }
+	public int getStopNumber()
+	{
+		return stopNumber;
+	}
 
-    public String getScheduledStartTime() {
-        return ScheduledStartTime;
-    }
+	public void setStopNumber(int stopNumber)
+	{
+		this.stopNumber = stopNumber;
+	}
 
-    public void setScheduledStartTime(String scheduledStartTime) {
-        ScheduledStartTime = scheduledStartTime;
-    }
+	public int getNumberOfPassengerIn()
+	{
+		return numberOfPassengerIn;
+	}
 
-    public String getScheduledArrivalTime() {
-        return ScheduledArrivalTime;
-    }
+	public void setNumberOfPassengerIn(int numberOfPassengerIn)
+	{
+		this.numberOfPassengerIn = numberOfPassengerIn;
+	}
 
-    public void setScheduledArrivalTime(String scheduledArrivalTime) {
-        ScheduledArrivalTime = scheduledArrivalTime;
-    }
+	public int getNumberOfPassengerOut()
+	{
+		return numberOfPassengerOut;
+	}
 
-    public String getActualStartTime() {
-        return ActualStartTime;
-    }
+	public void setNumberOfPassengerOut(int numberOfPassengerOut)
+	{
+		this.numberOfPassengerOut = numberOfPassengerOut;
+	}
 
-    public void setActualStartTime(String actualStartTime) {
-        ActualStartTime = actualStartTime;
-    }
+	public String getDate()
+	{
+		return Date;
+	}
 
-    public String getActualArrivalTime() {
-        return ActualArrivalTime;
-    }
+	public void setDate(String date)
+	{
+		Date = date;
+	}
 
-    public void setActualArrivalTime(String actualArrivalTime) {
-        ActualArrivalTime = actualArrivalTime;
-    }
+	public String getScheduledStartTime()
+	{
+		return ScheduledStartTime;
+	}
+
+	public void setScheduledStartTime(String scheduledStartTime)
+	{
+		ScheduledStartTime = scheduledStartTime;
+	}
+
+	public String getScheduledArrivalTime()
+	{
+		return ScheduledArrivalTime;
+	}
+
+	public void setScheduledArrivalTime(String scheduledArrivalTime)
+	{
+		ScheduledArrivalTime = scheduledArrivalTime;
+	}
+
+	public String getActualStartTime()
+	{
+		return ActualStartTime;
+	}
+
+	public void setActualStartTime(String actualStartTime)
+	{
+		ActualStartTime = actualStartTime;
+	}
+
+	public String getActualArrivalTime()
+	{
+		return ActualArrivalTime;
+	}
+
+	public void setActualArrivalTime(String actualArrivalTime)
+	{
+		ActualArrivalTime = actualArrivalTime;
+	}
 }

@@ -1,26 +1,33 @@
 package entitites;
 
-public class Stop {
-    private int stopNumber;
-    private String StopAddress;
-    public Stop(int stopNumber, String StopAddress){
-        this.stopNumber = stopNumber;
-        this.StopAddress = StopAddress;
-    }
+public class Stop
+{
+	private int stopNumber;
+	private String StopAddress;
 
-    public int getStopNumber() {
-        return stopNumber;
-    }
+	public Stop(int stopNumber, String StopAddress)
+	{
+		this.stopNumber = stopNumber;
+		this.StopAddress = StopAddress;
+	}
 
-    public void setStopNumber(int stopNumber) {
-        this.stopNumber = stopNumber;
-    }
+	public int getStopNumber()
+	{
+		return stopNumber;
+	}
 
-    public String getStopAddress() {
-        return StopAddress;
-    }
+	public void setStopNumber(int stopNumber)
+	{
+		this.stopNumber = stopNumber;
+	}
 
-    public void setStopAddress(String stopAddress) {
-        this.StopAddress = stopAddress;
-    }
+	public String getStopAddress()
+	{
+		return StopAddress;
+	}
+
+	public void setStopAddress(String stopAddress)
+	{
+		this.StopAddress = stopAddress;
+	}
 }
