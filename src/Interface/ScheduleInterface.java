@@ -2,6 +2,8 @@ package Interface;
 
 import entitites.*;
 
+import java.util.List;
+
 public interface ScheduleInterface {
 
     void createTripTable();
@@ -12,19 +14,14 @@ public interface ScheduleInterface {
     void createTripStopInfoTable();
     void createDriverTable();
 
-    void displayTripwithStartandStopLoc(Trip trip, TripOffering tripOffering);
+
+    List displayTripwithStartandStopLoc(Trip trip);
+
     void addDriver(Driver driver);
     void deleteBus(Bus bus);
     void addBus(Bus bus);
-    void showStops(TripStopInfo tripStopInfo);
+    List<TripStopInfo> showStops(Trip trip);
     void showWeeklySchedulebyDriverandDate(Driver driver, TripOffering tripOffering);
-    void recordActualData(ActualTripStopInfo actualTripStopInfo, Trip trip);
 
-
-
-
-
-
-
-
+    void recordActualData(Trip trip, updateSchedule updateSchedule);
 }

@@ -2,12 +2,14 @@ package entitites;
 
 public class Driver {
     private String DriverName;
-    private int driverTelephoneNumber;
-    public Driver(String DriverName, int driverTelephoneNumber)
+    private int driverTelephoneNumber, driverID;
+
+
+    public Driver(String DriverName, int driverTelephoneNumber, int driverID)
     {
         this.DriverName = DriverName;
         this.driverTelephoneNumber=driverTelephoneNumber;
-
+        this.driverID=driverID;
     }
 
     public String getDriverName() {
@@ -24,5 +26,13 @@ public class Driver {
 
     public void setDriverTelephoneNumber(int driverTelephoneNumber) {
         this.driverTelephoneNumber = driverTelephoneNumber;
+    }
+
+    public int getDriverID() {
+        return driverID;
+    }
+
+    public void setDriverID(int driverID) {
+        this.driverID = driverID;
     }
 }

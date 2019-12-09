@@ -2,6 +2,7 @@ package entitites;
 
 public class TripStopInfo {
     private int tripNumber, stopNumber,sequenceNumber,drivingTime;
+    public TripStopInfo(){}
     public TripStopInfo(int tripNumber, int stopNumber, int sequenceNumber, int drivingTime){
         this.tripNumber=tripNumber;
         this.drivingTime=drivingTime;
