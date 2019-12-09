@@ -16,6 +16,7 @@ public interface ScheduleInterface {
     List<Bus> displayBuses();
     List<Driver> displayDrivers();
     List<Trip> displayTrips();
+    List<TripOffering> displayTripOfferings();
     List displayTripwithStartandStopLoc(Trip trip);
 
     void addDriver(Driver driver);
@@ -23,15 +24,16 @@ public interface ScheduleInterface {
 
     void addBus(Bus bus);
     List<TripStopInfo> showStops(Trip trip);
-    void showWeeklyScheduleByDriverAndDate(Driver driver, TripOffering tripOffering);
+
+    void changeDriver(int DriverID, TripOffering tripOffering);
 
     void deleteTripOffering(TripOffering tripOffering);
 
+    List<TripOffering> showWeeklyScheduleByDriverAndDate(Driver driver, String Date);
+
     void addTripOffering(TripOffering tripOffering);
 
-    void changeDriver(TripOffering tripOffering);
-
-    void changeBus(TripOffering tripOffering);
+    void changeBus(int BusID, TripOffering tripOffering);
 
     void recordActualData(Trip trip, updateSchedule updateSchedule);
 }

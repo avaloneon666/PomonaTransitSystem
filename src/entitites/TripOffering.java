@@ -5,6 +5,9 @@ public class TripOffering
 	private int tripNumber, BusID;
 	private String Date, ScheduledStartTime, ScheduledArrivalTime, driverName;
 
+	public TripOffering() {
+	}
+
 	public TripOffering(int tripNumber, int BusID, String Date, String ScheduledStartTime, String ScheduledArrivalTime, String DriverName)
 	{
 		this.tripNumber = tripNumber;

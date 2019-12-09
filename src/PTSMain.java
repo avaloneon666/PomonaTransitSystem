@@ -11,14 +11,19 @@ public class PTSMain
 	{
 		System.out.println("Hello, I am CL4P-TR4P");
 		System.out.println("What would you like to do?");
-		System.out.println("1. Display Drivers");
-		System.out.println("2. Display Buses");
+		System.out.println("1. Display Buses");
+		System.out.println("2. Display Drivers");
 		System.out.println("3. Delete a Bus"); // Requirement Number 7.
 		System.out.println("4. Add a Driver");// Requirement Number 5.
 		System.out.println("5. Add a Bus");// Requirement Number 6.
 		System.out.println("6. Display the Stops of a Given Trip");// Requirement Number 3.
 		System.out.println("7. Insert Post-Trip Data into Trip Information");// Requirement Number 8.
 		System.out.println("8. Display the Schedule of all  Trips for a given Start Location and Destination Name");// Requirement Number 1.
+		System.out.println("9. Change Bus of a given trip offering");
+		System.out.println("10. Delete a Trip Offering");
+		System.out.println("11. Change Driver of a Trip Offering");
+		System.out.println("12. Add a Trip Offering");
+		System.out.println("13. Check Weekly Schedule of a Driver");
 		Scanner input = new Scanner(System.in);
 		int userInputOne= input.nextInt();
 		if(userInputOne==1)
@@ -43,17 +48,161 @@ public class PTSMain
 			displayStopswithTripNumber();
 		}
 		else if(userInputOne==7){
-
 			recordTripData();
-
 		}
 		else if(userInputOne==8){
 			displayTripwithStartandStopLoc();
 		}
+		else if(userInputOne==9){
+			changeBus();
+		}
+		else if(userInputOne==10){
+			deletetripOffering();
+		}
+		else if(userInputOne==11){
+			changeDriver();
+		}
+		else if(userInputOne==12){
+			addTripOffering();
+		}
+		else if(userInputOne==13){
+			checkWeeklySchedule();
+
+
+		}
 
 	}
 
+	private static void checkWeeklySchedule() {
+		displayDrivers();
+		Scanner input = new Scanner(System.in);
+		ScheduleWorker scheduleWorker= new ScheduleWorker();
+		Driver driver= new Driver();
+		System.out.println("Please enter the Driver Name to Display Schedule ");
+		driver.setDriverName(input.nextLine());
+		System.out.println("Please enter a Date in the YYYY-MM-DD format otherwise you'll fuck up my shit");
+		String Date = input.nextLine();
+		List<TripOffering> tripOfferings= scheduleWorker.showWeeklyScheduleByDriverAndDate(driver, Date);
+		System.out.println("Current Trip Offerings");
+		for (TripOffering tripOffering : tripOfferings)
+		{
+			System.out.println(tripOffering.getDate()+", "+tripOffering.getDriverName()+", "+
+					tripOffering.getBusID()+", "+tripOffering.getTripNumber()+", "+
+					tripOffering.getScheduledStartTime()+", "+tripOffering.getScheduledArrivalTime());
+		}
+	}
+	private static void addTripOffering() {
+		ScheduleWorker scheduleWorker = new ScheduleWorker();
+		Scanner input = new Scanner(System.in);
+		List<TripOffering> tripOfferings = scheduleWorker.displayTripOfferings();
+		System.out.println("Current Trip Offerings");
+		for (TripOffering tripOffering : tripOfferings)
+		{
+			System.out.println(tripOffering.getDate()+", "+tripOffering.getDriverName()+", "+
+					tripOffering.getBusID()+", "+tripOffering.getTripNumber()+", "+
+					tripOffering.getScheduledStartTime()+", "+tripOffering.getScheduledArrivalTime());
+		}
+		TripOffering tripOffering= new TripOffering();
 
+		System.out.println("Enter the Trip Number for the Trip you want to Add");
+
+		tripOffering.setTripNumber(input.nextInt());
+		input.nextLine();
+		System.out.println("Enter the Date of the Trip you want to Add");
+
+		tripOffering.setDate(input.nextLine());
+
+		System.out.println("Enter Scheduled Start Time of the Trip you want to ADD");
+
+		tripOffering.setScheduledStartTime(input.nextLine());
+
+		System.out.println("Enter Scheduled Arrival Time of the Trip you want to ADD");
+
+		tripOffering.setScheduledArrivalTime(input.nextLine());
+
+		System.out.println("Enter the Drivers Name for the trip you want to add");
+
+		tripOffering.setDriverName(input.nextLine());
+
+		System.out.println("Enter the Bus ID");
+
+		tripOffering.setBusID(input.nextInt());
+
+		scheduleWorker.addTripOffering(tripOffering);
+	}
+	private static void changeDriver() {
+		displayDrivers();
+		ScheduleWorker scheduleWorker = new ScheduleWorker();
+		List<TripOffering> tripOfferings = scheduleWorker.displayTripOfferings();
+		for (TripOffering tripOffering : tripOfferings)
+		{
+			System.out.println(tripOffering.getDate()+", "+tripOffering.getDriverName()+", "+
+					tripOffering.getBusID()+", "+tripOffering.getTripNumber()+", "+
+					tripOffering.getScheduledStartTime()+", "+tripOffering.getScheduledArrivalTime());
+		}
+		TripOffering tripOffering= new TripOffering();
+		System.out.println("Enter the Trip Number for the Trip you want to change the Driver For");
+		Scanner input = new Scanner(System.in);
+		tripOffering.setTripNumber(input.nextInt());
+		input.nextLine();
+		System.out.println("Enter the Date of the Trip you want to change Driver For");
+		tripOffering.setDate(input.nextLine());
+		System.out.println("Enter Scheduled Start Time of the Trip you want to change the Driver");
+		tripOffering.setScheduledStartTime(input.nextLine());
+		System.out.println("Enter the DriverID you want to change to");
+		int DriverId=input.nextInt();
+		input.nextLine();
+		scheduleWorker.changeDriver(DriverId,tripOffering);
+
+	}
+	private static void deletetripOffering() {
+		ScheduleWorker scheduleWorker = new ScheduleWorker();
+		List<TripOffering> tripOfferings = scheduleWorker.displayTripOfferings();
+		System.out.println("Current Trip Offerings");
+		for (TripOffering tripOffering : tripOfferings)
+		{
+			System.out.println(tripOffering.getDate()+", "+tripOffering.getDriverName()+", "+
+					tripOffering.getBusID()+", "+tripOffering.getTripNumber()+", "+
+					tripOffering.getScheduledStartTime()+", "+tripOffering.getScheduledArrivalTime());
+		}
+		TripOffering tripOffering= new TripOffering();
+		System.out.println("Enter the Trip Number for the Trip you want to Delete");
+		Scanner input = new Scanner(System.in);
+		tripOffering.setTripNumber(input.nextInt());
+		input.nextLine();
+		System.out.println("Enter the Date of the Trip you want to Delete");
+		tripOffering.setDate(input.nextLine());
+		System.out.println("Enter Scheduled Start Time of the Trip you want to Delete");
+		tripOffering.setScheduledStartTime(input.nextLine());
+		scheduleWorker.deleteTripOffering(tripOffering);
+	}
+	private static void changeBus() {
+		displayBuses();
+		ScheduleWorker scheduleWorker = new ScheduleWorker();
+		System.out.println("Current Trip Offerings");
+		List<TripOffering> tripOfferings = scheduleWorker.displayTripOfferings();
+
+		for (TripOffering tripOffering : tripOfferings)
+		{
+			System.out.println(tripOffering.getDate()+", "+tripOffering.getDriverName()+", "+
+					tripOffering.getBusID()+", "+tripOffering.getTripNumber()+", "+
+					tripOffering.getScheduledStartTime()+", "+tripOffering.getScheduledArrivalTime());
+		}
+		TripOffering tripOffering= new TripOffering();
+		System.out.println("Enter the Trip Number for the Trip you want to change the Bus for");
+		Scanner input = new Scanner(System.in);
+		tripOffering.setTripNumber(input.nextInt());
+		input.nextLine();
+		System.out.println("Enter the Date of the Trip");
+		tripOffering.setDate(input.nextLine());
+		System.out.println("Enter Scheduled Start Time of the Trip");
+		tripOffering.setScheduledStartTime(input.nextLine());
+		System.out.println("Enter the Bus ID you want to change to");
+		int BusID=input.nextInt();
+		input.nextLine();
+		scheduleWorker.changeBus(BusID,tripOffering);
+
+	}
 	private static void displayTripwithStartandStopLoc(){
 		System.out.println("Current Trips:");
 		ScheduleWorker scheduleWorker = new ScheduleWorker();
@@ -66,10 +215,10 @@ public class PTSMain
 		Scanner input = new Scanner(System.in);
 		System.out.println("Please Enter Trip Number for More Information: ");
 		trip.setTripNumber(input.nextInt());
-		List<entireTripSchedule> entireTripSchedules= scheduleWorker.displayTripwithStartandStopLoc(trip);
-		for(entireTripSchedule entireTripSchedule : entireTripSchedules)
+		List<TripStopInfo> tripStopInfos= scheduleWorker.displayTripwithStartandStopLoc(trip);
+		for(TripStopInfo tripStopInfo : tripStopInfos)
 		{
-			System.out.println(entireTripSchedule.getTripNumber()+", "+entireTripSchedule.getStartLocation()+", "+entireTripSchedule.getStopLocation()+", "+entireTripSchedule.getScheduledStartTime()+", "+entireTripSchedule.getScheduledArrivalTime()+", "+entireTripSchedule.getDriverID()+", "+entireTripSchedule.getBusID());
+			System.out.println(tripStopInfo.getTripNumber()+", "+tripStopInfo.getDrivingTime()+", "+tripStopInfo.getStopNumber()+", "+tripStopInfo.getSequenceNumber());
 		}
 
 
@@ -87,16 +236,21 @@ public class PTSMain
 		}
 		System.out.println("Enter Trip Number to Add to Record:");
 		int TripNumber= input.nextInt();
+		input.nextLine();
 		Trip trip= new Trip();
 		updateSchedule updateSchedule= new updateSchedule();
 		System.out.println("Please Enter Departure Time: ");
 		updateSchedule.setActualStartTime(input.nextLine());
+
 		System.out.println("Please Enter an Arrival Time:");
 		updateSchedule.setActualArrivalTime(input.nextLine());
+
 		System.out.println("Please Enter Number of Passengers In:");
 		updateSchedule.setNumberOfPassengerIn(input.nextInt());
+		input.nextLine();
 		System.out.println("Please Enter Number of Passengers Out:");
 		updateSchedule.setNumberOfPassengerOut(input.nextInt());
+		input.nextLine();
 		trip.setTripNumber(TripNumber);
 		scheduleWorker.recordActualData(trip,updateSchedule);
 	}
@@ -147,11 +301,8 @@ public class PTSMain
 		System.out.println("Enter New Driver Name:");
 		Scanner input = new Scanner(System.in);
 		String DriverName= input.nextLine();
-		System.out.println("Enter New Driver Telephone Number:");
-		int DriverTelephone= input.nextInt();
 		Driver driver = new Driver();
 		driver.setDriverName(DriverName);
-		driver.setDriverTelephoneNumber(DriverTelephone);
 		scheduleWorker.addDriver(driver);
 	}
 	private static void deleteABus() {
@@ -171,7 +322,7 @@ public class PTSMain
 		List<Driver> drivers = scheduleWorker.displayDrivers();
 		for (Driver driver : drivers)
 		{
-			System.out.println(driver.getDriverID() + "," + driver.getDriverName() + "," + driver.getDriverTelephoneNumber());
+			System.out.println(driver.getDriverID() + "," + driver.getDriverName());
 		}
 
 	}
