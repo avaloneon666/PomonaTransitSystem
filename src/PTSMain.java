@@ -53,6 +53,7 @@ public class PTSMain
 
 	}
 
+
 	private static void displayTripwithStartandStopLoc(){
 		System.out.println("Current Trips:");
 		ScheduleWorker scheduleWorker = new ScheduleWorker();
@@ -75,8 +76,6 @@ public class PTSMain
 
 
 	}
-
-
 	private static void recordTripData() {
 		System.out.println("Current Trips:");
 		ScheduleWorker scheduleWorker = new ScheduleWorker();
@@ -101,7 +100,6 @@ public class PTSMain
 		trip.setTripNumber(TripNumber);
 		scheduleWorker.recordActualData(trip,updateSchedule);
 	}
-
 	private static void displayStopswithTripNumber() {
 		System.out.println("Current Trips:");
 		ScheduleWorker scheduleWorker = new ScheduleWorker();
@@ -120,7 +118,6 @@ public class PTSMain
 			System.out.println(tripStopInfo.getTripNumber()+", "+tripStopInfo.getDrivingTime()+", "+tripStopInfo.getStopNumber()+", "+tripStopInfo.getSequenceNumber());
 		}
 	}
-
 	private static void addABus() {
 		System.out.println("Current Buses:");
 		ScheduleWorker scheduleWorker = new ScheduleWorker();
@@ -139,7 +136,6 @@ public class PTSMain
 		bus.setModel(busModel);
 		scheduleWorker.addBus(bus);
 	}
-
 	private static void addADriver() {
 		System.out.println("Current Drivers:");
 		ScheduleWorker scheduleWorker = new ScheduleWorker();
@@ -158,7 +154,6 @@ public class PTSMain
 		driver.setDriverTelephoneNumber(DriverTelephone);
 		scheduleWorker.addDriver(driver);
 	}
-
 	private static void deleteABus() {
 		ScheduleWorker scheduleWorker = new ScheduleWorker();
 		List<Bus> buses = scheduleWorker.displayBuses();
@@ -171,14 +166,6 @@ public class PTSMain
 		int BusId= input.nextInt();
 		scheduleWorker.deleteBus(BusId);
 	}
-
-
-
-
-
-
-
-
 	private static void displayDrivers() {
 		ScheduleWorker scheduleWorker = new ScheduleWorker();
 		List<Driver> drivers = scheduleWorker.displayDrivers();
@@ -188,7 +175,6 @@ public class PTSMain
 		}
 
 	}
-
 	private static void displayBuses() {
 
 		ScheduleWorker scheduleWorker = new ScheduleWorker();
