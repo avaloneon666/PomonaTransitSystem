@@ -45,6 +45,7 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
+
     @Override
     public void createTripOfferingTable() {
         Connection connection = null;
@@ -82,6 +83,7 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
+
     @Override
     public void createStopTable() {
         Connection connection = null;
@@ -114,6 +116,7 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
+
     @Override
     public void createActualTripStopInfoTable() {
         Connection connection = null;
@@ -150,6 +153,7 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
+
     @Override
     public void createTripStopInfoTable() {
         Connection connection = null;
@@ -184,6 +188,7 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
+
     @Override
     public void createDriverTable() {
         Connection connection = null;
@@ -248,9 +253,8 @@ public class ScheduleWorker implements ScheduleInterface {
                     e.printStackTrace();
                 }
             }
-            if(statement !=null)
-            {
-                try{
+            if (statement != null) {
+                try {
                     statement.close();
 
 
@@ -260,9 +264,8 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
             }
-            if(connection!=null)
-            {
-                try{
+            if (connection != null) {
+                try {
                     connection.close();
 
                 } catch (Exception e) {
@@ -271,7 +274,6 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
             }
-
 
 
         }
@@ -308,9 +310,8 @@ public class ScheduleWorker implements ScheduleInterface {
                     e.printStackTrace();
                 }
             }
-            if(statement !=null)
-            {
-                try{
+            if (statement != null) {
+                try {
                     statement.close();
 
 
@@ -320,9 +321,8 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
             }
-            if(connection!=null)
-            {
-                try{
+            if (connection != null) {
+                try {
                     connection.close();
 
                 } catch (Exception e) {
@@ -370,12 +370,6 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
-
-
-
-
-
-
 
 
     @Override
@@ -430,6 +424,7 @@ public class ScheduleWorker implements ScheduleInterface {
 
         return entireTrip;
     }
+
     @Override
     public void addDriver(Driver driver) {
         Connection connection = null;
@@ -461,6 +456,7 @@ public class ScheduleWorker implements ScheduleInterface {
         }
 
     }
+
     @Override
     public void deleteBus(Bus bus) {
         Connection connection = null;
@@ -495,6 +491,7 @@ public class ScheduleWorker implements ScheduleInterface {
             }
         }
     }
+
     @Override
     public void addBus(Bus bus) {
         Connection connection = null;
@@ -526,6 +523,7 @@ public class ScheduleWorker implements ScheduleInterface {
         }
 
     }
+
     @Override
     public List<TripStopInfo> showStops(Trip trip) {
         List<TripStopInfo> TripStopInfos = new ArrayList<>();
@@ -577,7 +575,7 @@ public class ScheduleWorker implements ScheduleInterface {
     }
 
     @Override
-    public void recordActualData(Trip trip,updateSchedule updateSchedule) {
+    public void recordActualData(Trip trip, updateSchedule updateSchedule) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -586,9 +584,9 @@ public class ScheduleWorker implements ScheduleInterface {
                     " ActualStartTime =?, ActualArrivalTime=?, NumberOfPassengerIn= ?, NumberOfPassengerOut=? WHERE tripNumber = ?");
             preparedStatement.setString(1, updateSchedule.getActualStartTime());
             preparedStatement.setString(2, updateSchedule.getActualArrivalTime());
-            preparedStatement.setInt(3,updateSchedule.getNumberOfPassengerIn());
-            preparedStatement.setInt(4,updateSchedule.getNumberOfPassengerOut());
-            preparedStatement.setInt(5,trip.getTripNumber());
+            preparedStatement.setInt(3, updateSchedule.getNumberOfPassengerIn());
+            preparedStatement.setInt(4, updateSchedule.getNumberOfPassengerOut());
+            preparedStatement.setInt(5, trip.getTripNumber());
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -609,15 +607,172 @@ public class ScheduleWorker implements ScheduleInterface {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
             }
         }
-
     }
 
 
-    public void showWeeklySchedulebyDriverandDate(Driver driver, TripOffering tripOffering) {
+    // Number 4
+    public void showWeeklyScheduleByDriverAndDate(Driver driver, TripOffering tripOffering) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = ConnectionWorker.getConnection();
+            preparedStatement = connection.prepareStatement("SELECT * From TripOffering WHERE YEARWEEK(Date) = " +
+                    "YEARWEEK(?) && DriverName = ?");
+            preparedStatement.setString(1, tripOffering.getDate());
+            preparedStatement.setString(2, driver.getDriverName());
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    // Number 2, for all these queries i am assuming data given is part of the parameter object (TripOffering tripOffering)
+    public void deleteTripOffering(TripOffering tripOffering) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = ConnectionWorker.getConnection();
+            preparedStatement = connection.prepareStatement("DELETE FROM TripOffering WHERE TripNumber == ? && Date == ? && ScheduledStartTime == ?");
+            preparedStatement.setInt(1, tripOffering.getTripNumber());
+            preparedStatement.setString(2, tripOffering.getDate());
+            preparedStatement.setString(3, tripOffering.getScheduledStartTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    // Add a set of trip offerings assuming the values of all attributes are given (the software asks if you have more trips to enter)
+    // you need to call this function in a while loop and keep asking if they have more trips to enter
+    public void addTripOffering(TripOffering tripOffering) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = ConnectionWorker.getConnection();
+            preparedStatement = connection.prepareStatement("INSERT INTO TripOffering (TripNumber, Date, ScheduledStartTime, ScheduledArriveTime, DriverName, BusID)" +
+                    " VALUES (?, ?, ?, ?, ?, ?)");
+            preparedStatement.setInt(1, tripOffering.getTripNumber());
+            preparedStatement.setString(2, tripOffering.getDate());
+            preparedStatement.setString(3, tripOffering.getScheduledStartTime());
+            preparedStatement.setString(4, tripOffering.getScheduledArrivalTime());
+            preparedStatement.setString(5, tripOffering.getDriverName());
+            preparedStatement.setInt(6, tripOffering.getBusID());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void changeDriver(TripOffering tripOffering) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = ConnectionWorker.getConnection();
+            preparedStatement = connection.prepareStatement("UPDATE TripOffering SET DriverName = ? WHERE TripNumber == ? && Date == ? && ScheduledStartTime == ?");
+            preparedStatement.setString(1, tripOffering.getDriverName());
+            // Given Trip#m, Date, and ScheduleStartTime, change the DriverName
+            preparedStatement.setInt(2, tripOffering.getTripNumber());
+            preparedStatement.setString(3, tripOffering.getDate());
+            preparedStatement.setString(4, tripOffering.getScheduledStartTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void changeBus(TripOffering tripOffering) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = ConnectionWorker.getConnection();
+            preparedStatement = connection.prepareStatement("UPDATE TripOffering SET BusID = ? WHERE TripNumber == ? && Date == ? && ScheduledStartTime == ?");
+            preparedStatement.setInt(1, tripOffering.getBusID());
+            // Given the below (trip#, Date, and ScheduleStartTime), change the BusID
+            preparedStatement.setInt(2, tripOffering.getTripNumber());
+            preparedStatement.setString(3, tripOffering.getDate());
+            preparedStatement.setString(4, tripOffering.getScheduledStartTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

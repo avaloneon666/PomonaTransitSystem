@@ -21,6 +21,6 @@ public interface ScheduleInterface {
     void deleteBus(Bus bus);
     void addBus(Bus bus);
     List<TripStopInfo> showStops(Trip trip);
-    void showWeeklySchedulebyDriverandDate(Driver driver, TripOffering tripOffering);
+    void showWeeklyScheduleByDriverAndDate(Driver driver, TripOffering tripOffering);
     void recordActualData(Trip trip, updateSchedule updateSchedule);
 }
