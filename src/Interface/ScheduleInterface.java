@@ -13,8 +13,8 @@ public interface ScheduleInterface {
     void createActualTripStopInfoTable();
     void createTripStopInfoTable();
     void createDriverTable();
-
-
+    List<Bus> displayBuses();
+    List<Driver> displayDrivers();
     List displayTripwithStartandStopLoc(Trip trip);
 
     void addDriver(Driver driver);
@@ -22,6 +22,5 @@ public interface ScheduleInterface {
     void addBus(Bus bus);
     List<TripStopInfo> showStops(Trip trip);
     void showWeeklySchedulebyDriverandDate(Driver driver, TripOffering tripOffering);
-
     void recordActualData(Trip trip, updateSchedule updateSchedule);
 }

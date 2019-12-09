@@ -5,6 +5,9 @@ public class Bus
 	private int BusID, year;
 	private String model;
 
+	public Bus() {
+	}
+
 	public Bus(int BusID, int year, String model)
 	{
 		this.BusID = BusID;

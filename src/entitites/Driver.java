@@ -4,6 +4,8 @@ public class Driver {
     private String DriverName;
     private int driverTelephoneNumber, driverID;
 
+    public Driver() {
+    }
 
     public Driver(String DriverName, int driverTelephoneNumber, int driverID)
     {

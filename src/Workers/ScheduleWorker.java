@@ -45,7 +45,6 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
-
     @Override
     public void createTripOfferingTable() {
         Connection connection = null;
@@ -83,8 +82,6 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
-
-
     @Override
     public void createStopTable() {
         Connection connection = null;
@@ -117,7 +114,6 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
-
     @Override
     public void createActualTripStopInfoTable() {
         Connection connection = null;
@@ -154,7 +150,6 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
-
     @Override
     public void createTripStopInfoTable() {
         Connection connection = null;
@@ -189,8 +184,6 @@ public class ScheduleWorker implements ScheduleInterface {
 
 
     }
-
-
     @Override
     public void createDriverTable() {
         Connection connection = null;
@@ -224,6 +217,124 @@ public class ScheduleWorker implements ScheduleInterface {
         }
 
     }
+
+    @Override
+    public List<Bus> displayBuses() {
+        List<Bus> buses = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionWorker.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT * from bus");
+            while (resultSet.next()) {
+                Bus bus = new Bus();
+                bus.setBusID(resultSet.getInt("BusID"));
+                bus.setModel(resultSet.getString("Model"));
+                bus.setYear(resultSet.getInt("Year"));
+                buses.add(bus);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+
+                    resultSet.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(statement !=null)
+            {
+                try{
+                    statement.close();
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+            if(connection!=null)
+            {
+                try{
+                    connection.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+
+        }
+        return buses;
+    }
+
+    @Override
+    public List<Driver> displayDrivers() {
+        List<Driver> drivers = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionWorker.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT * from driver");
+            while (resultSet.next()) {
+                Driver driver = new Driver();
+                driver.setDriverID(resultSet.getInt("DriverId"));
+                driver.setDriverName(resultSet.getString("DriverName"));
+                driver.setDriverTelephoneNumber(resultSet.getInt("DriverTelephone"));
+                drivers.add(driver);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+
+                    resultSet.close();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(statement !=null)
+            {
+                try{
+                    statement.close();
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+            if(connection!=null)
+            {
+                try{
+                    connection.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
+        return drivers;
+    }
+
 
     @Override
     public void createBusTable() {
@@ -261,6 +372,12 @@ public class ScheduleWorker implements ScheduleInterface {
     }
 
 
+
+
+
+
+
+
     @Override
     public List displayTripwithStartandStopLoc(Trip trip) {
         List<entireTripSchedule> entireTrip = new ArrayList<>();
@@ -278,8 +395,8 @@ public class ScheduleWorker implements ScheduleInterface {
                 entireTripSchedule.setBusID(resultSet.getString("DriverName"));
                 entireTripSchedule.setScheduledArrivalTime(resultSet.getString("ScheduledStartTime"));
                 entireTripSchedule.setScheduledArrivalTime(resultSet.getString("ScheduledArrivalTime"));
-                entireTripSchedule.setStartLocation(resultSet.getString("StartLocatioName"));
-                entireTripSchedule.setStopLocation(resultSet.getString("DesitnationName"));
+                entireTripSchedule.setStartLocation(resultSet.getString("StartLocationName"));
+                entireTripSchedule.setStopLocation(resultSet.getString("DestinationName"));
                 entireTrip.add(entireTripSchedule);
             }
 
@@ -313,7 +430,6 @@ public class ScheduleWorker implements ScheduleInterface {
 
         return entireTrip;
     }
-
     @Override
     public void addDriver(Driver driver) {
         Connection connection = null;
@@ -345,7 +461,6 @@ public class ScheduleWorker implements ScheduleInterface {
         }
 
     }
-
     @Override
     public void deleteBus(Bus bus) {
         Connection connection = null;
@@ -380,7 +495,6 @@ public class ScheduleWorker implements ScheduleInterface {
             }
         }
     }
-
     @Override
     public void addBus(Bus bus) {
         Connection connection = null;
@@ -412,7 +526,6 @@ public class ScheduleWorker implements ScheduleInterface {
         }
 
     }
-
     @Override
     public List<TripStopInfo> showStops(Trip trip) {
         List<TripStopInfo> TripStopInfos = new ArrayList<>();
@@ -463,15 +576,6 @@ public class ScheduleWorker implements ScheduleInterface {
         return TripStopInfos;
     }
 
-
-
-    @Override
-    public void showWeeklySchedulebyDriverandDate(Driver driver, TripOffering tripOffering) {
-
-    }
-
-
-
     @Override
     public void recordActualData(Trip trip,updateSchedule updateSchedule) {
         Connection connection = null;
@@ -509,6 +613,11 @@ public class ScheduleWorker implements ScheduleInterface {
 
             }
         }
+
+    }
+
+
+    public void showWeeklySchedulebyDriverandDate(Driver driver, TripOffering tripOffering) {
 
     }
 }
