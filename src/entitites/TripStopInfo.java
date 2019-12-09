@@ -1,43 +1,54 @@
 package entitites;
 
-public class TripStopInfo {
-    private int tripNumber, stopNumber,sequenceNumber,drivingTime;
-    public TripStopInfo(int tripNumber, int stopNumber, int sequenceNumber, int drivingTime){
-        this.tripNumber=tripNumber;
-        this.drivingTime=drivingTime;
-        this.sequenceNumber=sequenceNumber;
-        this.stopNumber=stopNumber;
-    }
+public class TripStopInfo
+{
+	private int tripNumber, stopNumber, sequenceNumber, drivingTime;
 
-    public int getTripNumber() {
-        return tripNumber;
-    }
+	public TripStopInfo(int tripNumber, int stopNumber, int sequenceNumber, int drivingTime)
+	{
+		this.tripNumber = tripNumber;
+		this.drivingTime = drivingTime;
+		this.sequenceNumber = sequenceNumber;
+		this.stopNumber = stopNumber;
+	}
 
-    public void setTripNumber(int tripNumber) {
-        this.tripNumber = tripNumber;
-    }
+	public int getTripNumber()
+	{
+		return tripNumber;
+	}
 
-    public int getStopNumber() {
-        return stopNumber;
-    }
+	public void setTripNumber(int tripNumber)
+	{
+		this.tripNumber = tripNumber;
+	}
 
-    public void setStopNumber(int stopNumber) {
-        this.stopNumber = stopNumber;
-    }
+	public int getStopNumber()
+	{
+		return stopNumber;
+	}
 
-    public int getSequenceNumber() {
-        return sequenceNumber;
-    }
+	public void setStopNumber(int stopNumber)
+	{
+		this.stopNumber = stopNumber;
+	}
 
-    public void setSequenceNumber(int sequenceNumber) {
-        this.sequenceNumber = sequenceNumber;
-    }
+	public int getSequenceNumber()
+	{
+		return sequenceNumber;
+	}
 
-    public int getDrivingTime() {
-        return drivingTime;
-    }
+	public void setSequenceNumber(int sequenceNumber)
+	{
+		this.sequenceNumber = sequenceNumber;
+	}
 
-    public void setDrivingTime(int drivingTime) {
-        this.drivingTime = drivingTime;
-    }
+	public int getDrivingTime()
+	{
+		return drivingTime;
+	}
+
+	public void setDrivingTime(int drivingTime)
+	{
+		this.drivingTime = drivingTime;
+	}
 }
