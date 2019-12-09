@@ -2,18 +2,28 @@ package entitites;
 
 public class entireTripSchedule {
     private String StartLocation, StopLocation,ScheduledStartTime,ScheduledArrivalTime,DriverID,BusID;
+    private int TripNumber;
 
     public entireTripSchedule() {
 
     }
 
-    public entireTripSchedule(String startLocation, String stopLocation, String scheduledStartTime, String scheduledArrivalTime, String driverID, String busID) {
+    public entireTripSchedule(int tripNumber, String startLocation, String stopLocation, String scheduledStartTime, String scheduledArrivalTime, String driverID, String busID) {
         this.StartLocation = startLocation;
+        this.TripNumber=tripNumber;
         this.StopLocation = stopLocation;
         this.ScheduledStartTime = scheduledStartTime;
         this.ScheduledArrivalTime = scheduledArrivalTime;
         this.DriverID = driverID;
         this.BusID = busID;
+    }
+
+    public int getTripNumber() {
+        return TripNumber;
+    }
+
+    public void setTripNumber(int tripNumber) {
+        TripNumber = tripNumber;
     }
 
     public String getStartLocation() {

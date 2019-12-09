@@ -5,6 +5,9 @@ public class updateSchedule
     private int numberOfPassengerIn, numberOfPassengerOut;
     private String ActualStartTime,ActualArrivalTime;
 
+    public updateSchedule() {
+    }
+
     public updateSchedule(int numberOfPassengerIn, int numberOfPassengerOut, String actualStartTime, String actualArrivalTime) {
         this.numberOfPassengerIn = numberOfPassengerIn;
         this.numberOfPassengerOut = numberOfPassengerOut;

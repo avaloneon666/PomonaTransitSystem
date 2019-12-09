@@ -5,6 +5,9 @@ public class Trip
 	private int tripNumber;
 	private String StartLocation, StopLocation;
 
+	public Trip() {
+	}
+
 	public Trip(int tripNumber, String StartLocation, String StopLocation)
 	{
 		this.tripNumber = tripNumber;
