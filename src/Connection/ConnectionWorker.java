@@ -8,6 +8,7 @@ public class ConnectionWorker {
         Connection connection = null;
         try
         {
+            Class.forName("com.mysql.jdbc.Driver");
             String dbURL = "jdbc:mysql://localhost:3306/pts";
             String dbUser ="root";
             String dbPassword="";
